@@ -1,0 +1,18 @@
+# Core dependencies for RAG-Farmers Assistant
+flask>=2.3.0
+python-dotenv>=1.0.0
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-groq>=0.1.0
+langchain-huggingface>=0.0.1
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+huggingface-hub>=0.16.0
+
+# Optional: Updated Chroma package (recommended)
+# Uncomment the line below and install if you want to use the latest Chroma
+# langchain-chroma>=0.1.0
+
+# Additional useful packages
+requests>=2.31.0
+numpy>=1.24.0
