@@ -1,0 +1,36 @@
+2025-10-20 12:08:42,352 - INFO - Loading environment variables...
+2025-10-20 12:08:42,354 - INFO - Environment variables validated successfully
+2025-10-20 12:08:42,354 - INFO - Initializing RAG system...
+2025-10-20 12:08:42,354 - INFO - Loading documents from crop_guide.txt
+2025-10-20 12:08:42,355 - INFO - Loaded 1 documents
+2025-10-20 12:08:42,355 - INFO - Split into 6 chunks
+2025-10-20 12:08:42,355 - INFO - Initializing embeddings...
+2025-10-20 12:08:59,302 - INFO - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-10-20 12:08:59,304 - INFO - NumExpr defaulting to 8 threads.
+2025-10-20 12:09:07,428 - WARNING - From D:\anaconda\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-10-20 12:09:08,066 - INFO - Use pytorch device_name: cpu
+2025-10-20 12:09:08,066 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-10-20 12:09:13,651 - INFO - Loading existing Chroma DB from Chroma_db
+2025-10-20 12:09:14,610 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-20 12:09:14,848 - INFO - Initializing Groq LLM...
+2025-10-20 12:09:15,596 - INFO - RAG system initialized successfully
+2025-10-20 12:09:26,409 - INFO - Starting Flask API server
+2025-10-20 12:09:26,426 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-20 12:09:26,426 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-20 12:22:45,099 - INFO - Received query: hello
+2025-10-20 12:22:45,099 - INFO - Processing farming query: hello
+2025-10-20 12:22:45,866 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-20 12:22:45,938 - INFO - Query processed successfully
+2025-10-20 12:22:45,941 - INFO - 127.0.0.1 - - [20/Oct/2025 12:22:45] "POST /query HTTP/1.1" 200 -
+2025-10-20 12:22:58,676 - INFO - Received query: 7+8 is
+2025-10-20 12:22:59,368 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-20 12:22:59,370 - INFO - Non-farming query rejected: 7+8 is
+2025-10-20 12:22:59,371 - INFO - 127.0.0.1 - - [20/Oct/2025 12:22:59] "POST /query HTTP/1.1" 200 -
+2025-10-20 12:23:02,840 - INFO - Received query: bye
+2025-10-20 12:23:02,840 - INFO - Processing farming query: bye
+2025-10-20 12:23:03,026 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-20 12:23:03,029 - INFO - Query processed successfully
+2025-10-20 12:23:03,031 - INFO - 127.0.0.1 - - [20/Oct/2025 12:23:03] "POST /query HTTP/1.1" 200 -
+2025-10-20 12:45:10,451 - ERROR - Environment validation failed: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
