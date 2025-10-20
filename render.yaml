@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: kisaan-ai-engine
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: FLASK_PORT
+        value: 5000
+    
+  - type: web
+    name: kisaan-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: AI_ENGINE_URL
+        value: https://kisaan-ai-engine.onrender.com
+    
+  - type: web
+    name: kisaan-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        value: https://kisaan-backend.onrender.com

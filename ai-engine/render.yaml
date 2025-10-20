@@ -1,0 +1,13 @@
+# Render Configuration for AI Engine (Flask)
+
+# Build Command
+pip install -r requirements.txt
+
+# Start Command
+python app.py
+
+# Environment
+python_version=3.11
+
+# Health Check Path
+/health

@@ -205,6 +205,134 @@ POST /api/chat
 
 ---
 
+## 🚀 Deployment Guide
+
+### Quick Deploy Options
+
+#### **Option 1: Vercel (Recommended for Frontend + Backend)**
+
+**Frontend Deployment:**
+1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
+2. Click "New Project" → Import `KisaanSahayak` repository
+3. Configure:
+   - **Framework Preset**: Create React App
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `build`
+4. Click "Deploy"
+
+**Backend Deployment:**
+1. Create new Vercel project
+2. Configure:
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm install`
+   - Add environment variable: `PORT=3001`
+3. Deploy
+
+**AI Engine (Use Render/Railway for Python):**
+- Vercel doesn't support Python well, use Render.com instead
+
+---
+
+#### **Option 2: Render.com (Best for Full Stack)**
+
+**Deploy All Three Services:**
+
+1. **AI Engine (Flask):**
+   - New Web Service → Connect GitHub repo
+   - **Root Directory**: `ai-engine`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `python app.py`
+   - **Environment**: Python 3
+
+2. **Backend (Node.js):**
+   - New Web Service
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm install`
+   - **Start Command**: `node server.js`
+   - Add env variable: `AI_ENGINE_URL=<your-flask-service-url>`
+
+3. **Frontend (React):**
+   - New Static Site
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `build`
+   - Add env variable: `REACT_APP_BACKEND_URL=<your-backend-url>`
+
+---
+
+#### **Option 3: Railway.app (Easiest)**
+
+1. Go to [railway.app](https://railway.app)
+2. "New Project" → "Deploy from GitHub repo"
+3. Select `KisaanSahayak`
+4. Railway auto-detects services
+5. Add environment variables
+6. Deploy!
+
+---
+
+#### **Option 4: Docker + Any Cloud Platform**
+
+**Create `docker-compose.yml` in root:**
+```yaml
+version: '3.8'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+  ai-engine:
+    build: ./ai-engine
+    ports:
+      - "5000:5000"
+```
+
+Deploy to AWS ECS, Google Cloud Run, or Azure Container Apps.
+
+---
+
+### Environment Variables Setup
+
+**Frontend (.env):**
+```bash
+REACT_APP_BACKEND_URL=http://localhost:3001
+```
+
+**Backend (.env):**
+```bash
+PORT=3001
+AI_ENGINE_URL=http://localhost:5000
+```
+
+**AI Engine (.env):**
+```bash
+GROQ_API_KEY=your_groq_api_key_here
+FLASK_PORT=5000
+```
+
+---
+
+### Custom Domain Setup
+
+**After deployment:**
+1. Go to your deployment platform's settings
+2. Add custom domain (e.g., `kisaansahayak.com`)
+3. Update DNS records as instructed
+4. Enable SSL (usually automatic)
+
+---
+
+### CI/CD with GitHub Actions
+
+Create `.github/workflows/deploy.yml` for automated deployments on every push to `main` branch.
+
+---
+
 ## Future Enhancements
 
 - [ ] Multi-language support (Hindi, regional languages)
@@ -214,6 +342,8 @@ POST /api/chat
 - [ ] User authentication and multi-user support
 - [ ] Mobile application (React Native)
 - [ ] Analytics dashboard for farming insights
+- [ ] Docker containerization for easy deployment
+- [ ] Kubernetes orchestration for scalability
 
 ---
 

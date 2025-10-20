@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "kisaan-sahayak-backend",
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server.js"
+    }
+  ],
+  "env": {
+    "PORT": "3001"
+  }
+}
