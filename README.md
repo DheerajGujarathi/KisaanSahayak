@@ -6,8 +6,7 @@
 
 ##  Demo Video
 
-**[Watch Demo](https://your-demo-link-here.com)** *(Replace with your actual demo video link)*
-
+**[Watch Demo](https://your-demo-link-here.com)** 
 ---
 
 ## Overview
