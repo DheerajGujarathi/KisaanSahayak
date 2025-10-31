@@ -44,15 +44,32 @@ for handler in logger.handlers:
 def validate_environment():
     """Validate all required environment variables and dependencies"""
     try:
-        load_dotenv()
+        # Try to load .env with explicit encoding handling
+        env_file = '.env'
+        if os.path.exists(env_file):
+            try:
+                # Try UTF-8 first
+                load_dotenv(env_file, encoding='utf-8')
+            except UnicodeDecodeError:
+                try:
+                    # Try UTF-8 with BOM
+                    load_dotenv(env_file, encoding='utf-8-sig')
+                except UnicodeDecodeError:
+                    # Fall back to system encoding
+                    import locale
+                    system_encoding = locale.getpreferredencoding()
+                    logger.warning(f"Using system encoding: {system_encoding}")
+                    load_dotenv(env_file, encoding=system_encoding)
+        
         logger.info("Loading environment variables...")
         
         GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-        if not GROQ_API_KEY:
-            logger.error("GROQ_API_KEY not found in environment variables")
+        if not GROQ_API_KEY or GROQ_API_KEY == "your_api_key_here":
+            logger.error("GROQ_API_KEY not found or not set in environment variables")
             print("Error: GROQ_API_KEY not set in your .env file")
             print("Please create a .env file with your Groq API key:")
-            print("GROQ_API_KEY=your_api_key_here")
+            print("GROQ_API_KEY=your_actual_api_key")
+            print("\nGet your free API key from: https://console.groq.com/keys")
             sys.exit(1)
         
         logger.info("Environment variables validated successfully")
@@ -60,6 +77,7 @@ def validate_environment():
     except Exception as e:
         logger.error(f"Environment validation failed: {e}")
         print(f"❌ Environment setup error: {e}")
+        print("\nTip: Try recreating your .env file with UTF-8 encoding")
         sys.exit(1)
 
 GROQ_API_KEY = validate_environment()
